@@ -1,0 +1,79 @@
+/* ~/.config/waybar/style.css */
+
+@import "colors.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  border-radius: 0;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+}
+
+window#waybar {
+  background: linear-gradient(90deg,
+    rgba(238, 216, 255, 0.35) 0%,
+    rgba(229, 195, 255, 0.35) 14%,
+    rgba(215, 172, 249, 0.35) 29%,
+    rgba(146, 82, 213, 0.35) 43%,
+    rgba(114, 49, 183, 0.35) 57%,
+    rgba(82, 30, 146, 0.35) 71%,
+    rgba(56, 14, 103, 0.35) 86%,
+    rgba(31, 1, 66, 0.35) 100%);
+	font-family: "GoMono Nerd Font";
+  font-size: 11pt;
+  color: @on_background;
+}
+
+window#waybar.empty #window {
+  padding: 0;
+}
+
+#mpris,
+#idle_inhibitor,
+#window,
+#custom-launcher,
+#cpu,
+#backlight,
+#memory,
+#wireplumber,
+#battery,
+#battery.critical,
+#battery.warning,
+#network,
+#clock {
+  padding-right: 4pt;
+  padding-left: 4pt;
+}
+
+#workspaces {
+  padding: 0 4pt;
+}
+
+#workspaces button {
+  padding: 0 2pt;
+  color: @tertiary;
+}
+
+#workspaces button:hover {
+  color: @on_secondary_container;
+  background-color: @background;
+  border-top: 2pt solid @surface_tint;
+  border-bottom: 2pt solid @surface_tint;
+}
+
+#workspaces button.active,
+#workspaces button.active:hover {
+  color: @workspace_active;
+}
+
+#workspaces button.urgent {
+  color: @error;
+}
+
+#tray {
+  padding: 0 6pt;
+}

@@ -1,0 +1,106 @@
+# General settings and external theme imports
+[general]
+import = [] # Add external theme paths here if desired
+live_config_reload = true # Apply changes instantly upon saving
+
+[env]
+TERM = "xterm-256color" # Broadly compatible; avoids "unknown terminal" issues in remote sessions
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["--login"] # Sources .zprofile/.zlogin so PATH etc. match a real login shell
+
+[window]
+decorations = "full" # Options: full, none, transparent, buttonless
+opacity = 0.80        # Controls transparency (0.0 to 1.0)
+blur = true           # Enables background blur (macOS/Wayland)
+dynamic_title = true  # Let the shell set the window title (needed for live CWD display below)
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.padding]
+x = 12
+y = 12
+
+[scrolling]
+history = 50000 # Number of lines to keep in the scrollback buffer
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "GoMono Nerd Font" # Change to your preferred system font
+style = "Regular"
+
+[font.bold]
+family = "GoMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "GoMono Nerd Font"
+style = "Italic"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+# Color scheme -- background/foreground/cursor/selection/black/white pulled
+# from the purple wallpaper palette. red/green/yellow/blue/magenta/cyan are
+# left as functional ANSI colors on purpose: git, ls, diffs, and test
+# runners rely on those hues meaning what they normally mean, so
+# purple-tinting all of them would make output harder to scan at a glance
+# even though it'd look more "on theme". Shout if you'd rather have those
+# tinted too and we can revisit.
+[colors.primary]
+background = "#010003"
+foreground = "0xeed8ff"
+dim_foreground = "0xd7acf9"
+
+[colors.cursor]
+text = "0x1f0142"
+cursor = "0x9252d5"
+
+[colors.selection]
+text = "0xeed8ff"
+background = "0x521e92"
+
+[colors.normal]
+black   = "0x380e67"
+red     = "0xf38ba8"
+green   = "0xa6e3a1"
+yellow  = "0xf9e2af"
+blue    = "0x89b4fa"
+magenta = "0xf5c2e7"
+cyan    = "0x94e2d5"
+white   = "0xd7acf9"
+
+[colors.bright]
+black   = "0x521e92"
+red     = "0xf38ba8"
+green   = "0xa6e3a1"
+yellow  = "0xf9e2af"
+blue    = "0x89b4fa"
+magenta = "0xf5c2e7"
+cyan    = "0x94e2d5"
+white   = "0xeed8ff"
+
+[keyboard]
+bindings = [
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+    { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+
+    # Prompt word-movement/deletion. These don't invoke Alacritty actions --
+    # they send the exact bytes zsh's default emacs keymap already expects,
+    # so no .zshrc changes are needed:
+    #   Ctrl+Left/Right  -> ESC b / ESC f      (backward-word / forward-word)
+    #   Ctrl+Backspace   -> 0x17 (Ctrl+W)      (backward-kill-word)
+    #   Ctrl+Delete      -> ESC d              (kill-word)
+    { key = "Left",      mods = "Control", chars = "\u001bb" },
+    { key = "Right",     mods = "Control", chars = "\u001bf" },
+    { key = "Backspace", mods = "Control", chars = "\u0017" },
+    { key = "Delete",    mods = "Control", chars = "\u001bd" }
+]
+
+[terminal]
