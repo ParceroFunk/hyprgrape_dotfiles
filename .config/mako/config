@@ -1,0 +1,15 @@
+default-timeout=5000
+
+border-radius=12
+border-size=2
+border-color=#9252d5
+background-color=#1f0142ee
+text-color=#eed8ff
+progress-color=over #521e92
+
+[urgency=low]
+border-color=#7231b7
+
+[urgency=high]
+border-color=#d7acf9
+background-color=#380e67ee

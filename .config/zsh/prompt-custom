@@ -1,0 +1,8 @@
+
+setopt PROMPT_SUBST
+
+# Purple gradient palette prompt
+PROMPT='%{%F{#521E92}%}%n%{%F{#7231B7}%}@%{%F{#521E92}%}%m %F{#9252D5}%*%f %F{#D7ACF9}%~%f %F{#EED8FF}${vcs_info_msg_0_}%f$ '
+
+#export PS1="%{%F{165}%}%n%{%F{171}%}@%{%F{213}%}%m %{%F{219}%}%1~ %{%f%}$ "
+

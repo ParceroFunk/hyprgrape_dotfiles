@@ -4,6 +4,7 @@
 -- TODO: confirm terminal (kitty assumed as placeholder — swap if you use alacritty/foot/etc.)
 terminal = "alacritty"
 fileManager = "dolphin"
+browser = "firefox"
 menu = "fuzzel"
 bar = "waybar"
 notifier = "mako"

@@ -1,14 +1,17 @@
 -- lua/binds.lua
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/
 
-local mainMod = "ALT"
+local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+hl.bind("CTRL + SHIFT + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind("CTRL + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(
 	"command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
 ))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -19,6 +22,9 @@ hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+-- Cycle windows (clockwise / counter-clockwise)
+hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
+hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ prev = true }))
 
 -- Workspaces 1-10 (0 = 10)
 for i = 1, 10 do
@@ -58,6 +64,13 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 -- Lock screen (hyprlock is installed)
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+
+-- Toggle between keyboard layouts
+hl.bind("SUPER + SPACE", hl.dsp.exec_cmd(
+	"hyprctl switchxkblayout all next; " ..
+	"LAYOUT=$(hyprctl devices -j | jq -r '.keyboards[0].active_keymap'); " ..
+	"notify-send 'Keyboard Layout' \"$LAYOUT\""
+), { locked = true })
 
 -- GUI control panel: display arrangement/resolution/scale
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("nwg-displays"))
